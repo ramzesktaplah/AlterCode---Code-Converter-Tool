@@ -23,6 +23,8 @@ import {
 import mobileHeroImage from './assets/images/altercode_mobile_hero_1790513583351.jpg';
 import securityImage from './assets/images/altercode_security_vault_1790513598077.jpg';
 import logoImage from './assets/images/altercodelogo.png';
+import googlePlayImage from './assets/images/googleplay-badge.png';
+import appStoreImage from './assets/images/appstore-coming-soon.png';
 
 const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.ai.altercode';
 const GITHUB_URL = 'https://github.com/ramzesktaplah/Altercode';
@@ -62,6 +64,19 @@ function Reveal({ children, className = '', delay = 0 }: { children: ReactNode; 
 function BrandMark() {
   return (
     <img className="brand-logo" src={logoImage} alt="" aria-hidden="true" />
+  );
+}
+
+function StoreBadges() {
+  return (
+    <div className="store-badges" aria-label="Download options">
+      <a className="store-badge" href={PLAY_STORE_URL} target="_blank" rel="noreferrer" aria-label="Get AlterCode on Google Play">
+        <img src={googlePlayImage} alt="Get it on Google Play" />
+      </a>
+      <span className="store-badge store-badge--disabled" aria-label="AlterCode coming soon to the App Store">
+        <img src={appStoreImage} alt="Coming soon on the App Store" />
+      </span>
+    </div>
   );
 }
 
@@ -127,7 +142,7 @@ function Hero() {
       <div className="hero__orb hero__orb--two" />
       <div className="shell">
         <div className="hero__eyebrow reveal is-visible">
-          <span className="status-dot" /> Android-native AI tooling <span className="eyebrow-divider">/</span> alter 2.8 is live
+          <span className="status-dot" /> alter 2.8 is live
         </div>
 
         <div className="hero__grid">
@@ -137,13 +152,11 @@ function Hero() {
             </Reveal>
             <Reveal delay={150}>
               <p className="hero__lede">
-                AlterCode brings a fast, private AI code assistant to the device already in your pocket. Refactor, translate, debug, and ship without breaking your flow.
+                AlterCode brings a fast, public AI code converter to the devices already in your pocket. Refactor, translate, debug, and ship without breaking your flow.
               </p>
             </Reveal>
             <Reveal delay={220} className="hero__actions">
-              <a className="button button--lime button--large" href={PLAY_STORE_URL} target="_blank" rel="noreferrer">
-                <Play size={17} fill="currentColor" /> Get it on Google Play <ArrowRight size={17} />
-              </a>
+              <StoreBadges />
               <button className="text-link" onClick={() => scrollToId('playground')}>See it in action <ArrowDownRight size={17} /></button>
             </Reveal>
             <Reveal delay={290}>
@@ -334,7 +347,7 @@ function DownloadSection() {
         <Reveal className="download__panel">
           <div className="download__glow" />
           <div className="download__copy"><div className="kicker kicker--light"><span>05</span> Ready when you are</div><h2>Make the next<br /><em>good thing.</em></h2><p>Keep your best thinking close. AlterCode is free to start on Android.</p></div>
-          <div className="download__action"><a className="button button--lime button--large" href={PLAY_STORE_URL} target="_blank" rel="noreferrer"><Play size={17} fill="currentColor" /> Download on Google Play <ArrowUpRight size={17} /></a><span>Android 8.0+ <i /> Free to start</span></div>
+          <div className="download__action"><StoreBadges /><span>Mobile devices <i /> Free to start</span></div>
         </Reveal>
       </div>
     </section>
