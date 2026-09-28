@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react';
 import {
   ArrowDownRight,
+  ArrowLeft,
   ArrowRight,
   ArrowUpRight,
   Check,
@@ -21,6 +22,7 @@ import {
 } from 'lucide-react';
 import mobileHeroImage from './assets/images/altercode_mobile_hero_1790513583351.jpg';
 import securityImage from './assets/images/altercode_security_vault_1790513598077.jpg';
+import logoImage from './assets/images/altercodelogo.png';
 
 const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.ai.altercode';
 const GITHUB_URL = 'https://github.com/ramzesktaplah/Altercode';
@@ -59,10 +61,7 @@ function Reveal({ children, className = '', delay = 0 }: { children: ReactNode; 
 
 function BrandMark() {
   return (
-    <span className="brand-mark" aria-hidden="true">
-      <span className="brand-mark__slash">/</span>
-      <span className="brand-mark__dot" />
-    </span>
+    <img className="brand-logo" src={logoImage} alt="" aria-hidden="true" />
   );
 }
 
@@ -360,9 +359,16 @@ function Faq() {
 }
 
 function Footer() {
-  return <footer className="footer"><div className="shell footer__inner"><a className="wordmark" href="#top"><BrandMark /><span>altercode</span></a><span className="footer__meta">Native AI tooling for Android developers.</span><div className="footer__links"><a href={GITHUB_URL} target="_blank" rel="noreferrer"><Github size={15} /> GitHub</a><a href={PLAY_STORE_URL} target="_blank" rel="noreferrer"><Download size={15} /> Google Play</a></div><span className="footer__legal">© 2025 AlterCode</span></div></footer>;
+  return <footer className="footer"><div className="shell footer__inner"><a className="wordmark" href="/#top"><BrandMark /><span>altercode</span></a><span className="footer__meta">Native AI tooling for Android developers.</span><div className="footer__links"><a href="/privacy-policy">Privacy Policy</a><a href="/terms">Terms &amp; Conditions</a></div><span className="footer__legal">© 2025 AlterCode</span></div></footer>;
+}
+
+function PolicyPage({ type }: { type: 'privacy' | 'terms' }) {
+  const isPrivacy = type === 'privacy';
+  return <div className="policy-page"><header className="policy-page__nav"><a className="wordmark" href="/#top"><BrandMark /><span>altercode</span></a><a className="text-link" href="/#top"><ArrowLeft size={17} /> Back to home</a></header><main className="policy-page__content"><div className="kicker"><span>{isPrivacy ? '01' : '02'}</span> AlterCode legal</div><h1>{isPrivacy ? 'Privacy Policy' : 'Terms & Conditions'}</h1><p className="policy-page__updated">Last updated: September 27, 2026</p>{isPrivacy ? <><h2>What we collect</h2><p>AlterCode is designed to keep your development workflow private. We collect only the information needed to provide the app, improve reliability, and respond to support requests.</p><h2>Code and local history</h2><p>Your code history is stored locally on your device and protected with Android Keystore-backed encryption. We do not sell your code or maintain a cloud archive of your local history.</p><h2>AI requests</h2><p>When you ask AlterCode for an explanation, translation, or refactor, the request is sent to the selected AI service through our edge routing layer so we can return an answer. Requests are protected in transit and are not used to identify you.</p><h2>Contact</h2><p>Questions about privacy can be directed to the AlterCode team through the project repository.</p></> : <><h2>Using AlterCode</h2><p>AlterCode is provided as a development aid. You are responsible for reviewing generated output, testing changes, and confirming that code is safe and appropriate for your project.</p><h2>Your responsibilities</h2><p>Do not use AlterCode to upload code or content you are not authorized to share. You agree not to abuse, reverse engineer, or disrupt the service or its supporting infrastructure.</p><h2>Availability and changes</h2><p>Features may change as AlterCode evolves. We may update these terms when the service, app, or applicable requirements change. Continued use after an update means you accept the revised terms.</p><h2>Contact</h2><p>For questions about these terms, contact the AlterCode team through the project repository.</p></>}</main><Footer /></div>;
 }
 
 export default function App() {
+  if (window.location.pathname === '/privacy-policy') return <PolicyPage type="privacy" />;
+  if (window.location.pathname === '/terms') return <PolicyPage type="terms" />;
   return <div className="site-shell"><Navbar /><main><Hero /><SignalStrip /><Playground /><Features /><Architecture /><Security /><DownloadSection /><Faq /></main><Footer /></div>;
 }
