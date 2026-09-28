@@ -147,6 +147,9 @@
   .section-intro__aside { padding-bottom: 5px; }
   .section-intro__aside .text-link { margin-top: 25px; }
   .playground__window { margin-top: 74px; overflow: hidden; border: 1px solid rgba(255,255,255,.14); border-radius: 16px; background: #0b1013; box-shadow: 0 36px 80px rgba(0,0,0,.22); }
+  .playground__video { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: #02050d; }
+  .playground__video iframe { display: block; width: 100%; height: 100%; border: 0; }
+
   .playground__chrome { display: flex; align-items: center; gap: 18px; height: 52px; padding: 0 18px; border-bottom: 1px solid rgba(255,255,255,.1); background: #141d22; color: #87969b; }
   .window-dots { display: flex; gap: 6px; }
   .window-dots i { width: 7px; height: 7px; border-radius: 50%; background: #44535a; }

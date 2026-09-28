@@ -16,7 +16,6 @@ import {
   Play,
   ShieldCheck,
   Sparkles,
-  Terminal,
   X,
   Zap,
 } from 'lucide-react';
@@ -208,8 +207,6 @@ function SignalStrip() {
 }
 
 function Playground() {
-  const [activeTask, setActiveTask] = useState('Refactor');
-  const tasks = ['Refactor', 'Explain', 'Translate'];
   return (
     <section id="playground" className="playground section-pad section-dark">
       <div className="shell">
@@ -227,27 +224,18 @@ function Playground() {
         <Reveal className="playground__window" delay={100}>
           <div className="playground__chrome">
             <div className="window-dots"><i /><i /><i /></div>
-            <div className="window-title"><Terminal size={14} /> altercode / workspace</div>
-            <span className="window-live"><span className="status-dot status-dot--lime" /> live</span>
+            <div className="window-title"><Play size={14} fill="currentColor" /> altercode / product tour</div>
+            <span className="window-live"><span className="status-dot status-dot--lime" /> watch now</span>
           </div>
-          <div className="playground__body">
-            <div className="playground__sidebar">
-              <span className="sidebar-label">TASK</span>
-              {tasks.map((task, index) => (
-                <button key={task} className={activeTask === task ? 'is-active' : ''} onClick={() => setActiveTask(task)}>
-                  <span>0{index + 1}</span>{task}
-                </button>
-              ))}
-              <div className="sidebar-bottom"><span className="status-dot status-dot--lime" /> AI engine ready</div>
-            </div>
-            <div className="playground__editor">
-              <div className="editor-meta"><span>Kotlin · MainViewModel.kt</span><span>12 lines</span></div>
-              <pre><code><span className="code-muted">01</span> <span className="code-purple">suspend fun</span> <span className="code-blue">loadWorkspace</span>() {'{'}{`\n`}<span className="code-muted">02</span>   <span className="code-purple">val</span> result = <span className="code-blue">repository</span>.fetch() {`\n`}<span className="code-muted">03</span>   <span className="code-purple">if</span> (result.isFailure) {'{'}{`\n`}<span className="code-muted">04</span>     <span className="code-blue">emit</span>(UiState.Error(result.exceptionOrNull())){`\n`}<span className="code-muted">05</span>   {'}'} <span className="code-purple">else</span> {'{'}{`\n`}<span className="code-muted">06</span>     <span className="code-blue">emit</span>(UiState.Success(result.getOrThrow())){`\n`}<span className="code-muted">07</span>   {'}'}{`\n`}<span className="code-muted">08</span> {'}'}</code></pre>
-              <div className="editor-response">
-                <div className="response-heading"><Sparkles size={15} /> AlterCode / {activeTask} mode <span>just now</span></div>
-                <p>{activeTask === 'Refactor' ? 'Collapse the error branch into a sealed result and keep the coroutine readable.' : activeTask === 'Explain' ? 'This function loads the workspace and emits a UI-safe state for each result.' : 'Convert this Kotlin coroutine pattern to an idiomatic TypeScript async function.'}</p>
-              </div>
-            </div>
+          <div className="playground__video">
+            <iframe
+              src="https://www.youtube.com/embed/XgNR9ligu6c?si=RTsR0bpuptJVywxo"
+              title="AlterCode product video"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            />
           </div>
         </Reveal>
       </div>
