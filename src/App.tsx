@@ -23,10 +23,11 @@ import mobileHeroImage from './assets/images/altercode_mobile_hero_1790513583351
 import securityImage from './assets/images/altercode_security_vault_1790513598077.jpg';
 import logoImage from './assets/images/altercodelogo.png';
 import googlePlayImage from './assets/images/googleplay-badge.png';
-import appStoreImage from './assets/images/appstore-coming-soon.png';
+import appStoreImage from './assets/images/appstore-comingsoon.png';
 
 const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.ai.altercode';
 const GITHUB_URL = 'https://github.com/ramzesktaplah/Altercode';
+const APP_STORE_URL = 'https://www.apple.com/app-store/';
 
 function scrollToId(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -72,9 +73,9 @@ function StoreBadges() {
       <a className="store-badge" href={PLAY_STORE_URL} target="_blank" rel="noreferrer" aria-label="Get AlterCode on Google Play">
         <img src={googlePlayImage} alt="Get it on Google Play" />
       </a>
-      <span className="store-badge store-badge--disabled" aria-label="AlterCode coming soon to the App Store">
-        <img src={appStoreImage} alt="Coming soon on the App Store" />
-      </span>
+      <a className="store-badge" href={APP_STORE_URL} target="_blank" rel="noreferrer" aria-label="Visit the App Store">
+        <img src={appStoreImage} alt="Available on the App Store soon" />
+      </a>
     </div>
   );
 }
@@ -157,12 +158,6 @@ function Hero() {
             <Reveal delay={220} className="hero__actions">
               <StoreBadges />
               <button className="text-link" onClick={() => scrollToId('playground')}>See it in action <ArrowDownRight size={17} /></button>
-            </Reveal>
-            <Reveal delay={290}>
-              <div className="hero__proof">
-                <div className="proof-avatars" aria-hidden="true"><span>AK</span><span>JS</span><span>+</span></div>
-                <span>Built for developers who think in motion.</span>
-              </div>
             </Reveal>
           </div>
 

@@ -102,14 +102,6 @@
   .store-badge:hover { transform: translateY(-2px); }
   .store-badge:active { transform: scale(.97); }
   .store-badge img { display: block; width: 100%; height: auto; max-height: 58px; object-fit: contain; filter: none; }
-  .store-badge--disabled { opacity: .82; cursor: default; }
-  .store-badge--disabled:hover { transform: none; }
-  .hero__proof { display: flex; align-items: center; gap: 12px; margin-top: 45px; color: #78868b; font-size: 11px; }
-  .proof-avatars { display: flex; }
-  .proof-avatars span { display: grid; place-items: center; width: 27px; height: 27px; margin-left: -6px; border: 2px solid var(--ink); border-radius: 50%; background: #26333a; color: #67b2ff; font: 8px/1 'Space Mono', monospace; }
-  .proof-avatars span:first-child { margin-left: 0; background: #31404a; color: #f3f5ef; }
-  .proof-avatars span:nth-child(2) { background: #d6a679; color: #172026; }
-  .proof-avatars span:last-child { background: var(--lime); color: var(--ink); }
   .hero__visual-wrap { position: relative; min-width: 0; }
   .hero__visual { position: relative; width: min(100%, 500px); min-height: 550px; margin-left: auto; }
   .visual-grid { position: absolute; inset: -48px -46px -50px -45px; background-image: linear-gradient(rgba(255,255,255,.055) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.055) 1px, transparent 1px); background-size: 42px 42px; mask-image: linear-gradient(to bottom, transparent, black 18%, black 78%, transparent); opacity: .4; }
