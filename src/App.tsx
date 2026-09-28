@@ -208,29 +208,38 @@ function SignalStrip() {
 
 function ProductVideo() {
   const videoRef = useRef<HTMLDivElement>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const hasLoaded = useRef(false);
   const [shouldLoad, setShouldLoad] = useState(false);
 
   useEffect(() => {
     const node = videoRef.current;
-    if (!node || shouldLoad) return;
+    if (!node) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setShouldLoad(true);
-          observer.disconnect();
+          if (!hasLoaded.current) {
+            hasLoaded.current = true;
+            setShouldLoad(true);
+          } else {
+            iframeRef.current?.contentWindow?.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*');
+          }
+        } else if (hasLoaded.current) {
+          iframeRef.current?.contentWindow?.postMessage(JSON.stringify({ event: 'command', func: 'pauseVideo', args: [] }), '*');
         }
       },
       { threshold: 0.35 },
     );
     observer.observe(node);
     return () => observer.disconnect();
-  }, [shouldLoad]);
+  }, []);
 
   return (
     <div ref={videoRef} className="playground__video">
       {shouldLoad && (
         <iframe
-          src="https://www.youtube.com/embed/XgNR9ligu6c?si=RTsR0bpuptJVywxo&autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1"
+          ref={iframeRef}
+          src="https://www.youtube.com/embed/XgNR9ligu6c?si=RTsR0bpuptJVywxo&autoplay=1&mute=1&playsinline=1&enablejsapi=1&rel=0&modestbranding=1"
           title="AlterCode product video"
           frameBorder="0"
           allow="autoplay; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
