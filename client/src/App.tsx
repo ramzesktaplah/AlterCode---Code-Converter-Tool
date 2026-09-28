@@ -206,6 +206,42 @@ function SignalStrip() {
   );
 }
 
+function ProductVideo() {
+  const videoRef = useRef<HTMLDivElement>(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
+
+  useEffect(() => {
+    const node = videoRef.current;
+    if (!node || shouldLoad) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoad(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.35 },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [shouldLoad]);
+
+  return (
+    <div ref={videoRef} className="playground__video">
+      {shouldLoad && (
+        <iframe
+          src="https://www.youtube.com/embed/XgNR9ligu6c?si=RTsR0bpuptJVywxo&autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1"
+          title="AlterCode product video"
+          frameBorder="0"
+          allow="autoplay; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+        />
+      )}
+    </div>
+  );
+}
+
 function Playground() {
   return (
     <section id="playground" className="playground section-pad section-dark">
@@ -227,16 +263,7 @@ function Playground() {
             <div className="window-title"><Play size={14} fill="currentColor" /> altercode / product tour</div>
             <span className="window-live"><span className="status-dot status-dot--lime" /> watch now</span>
           </div>
-          <div className="playground__video">
-            <iframe
-              src="https://www.youtube.com/embed/XgNR9ligu6c?si=RTsR0bpuptJVywxo"
-              title="AlterCode product video"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-            />
-          </div>
+          <ProductVideo />
         </Reveal>
       </div>
     </section>
