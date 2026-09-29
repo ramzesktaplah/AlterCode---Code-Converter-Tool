@@ -28,8 +28,19 @@ const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.ai.alt
 const GITHUB_URL = 'https://github.com/ramzesktaplah/Altercode';
 const APP_STORE_URL = 'https://www.apple.com/app-store/';
 
-function scrollToId(id: string) {
+function scrollToId(id: string, updateUrl = true) {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  if (updateUrl && typeof window !== 'undefined') {
+    const routeMap: Record<string, string> = {
+      playground: '/demo',
+      features: '/capabilities',
+      architecture: '/architecture',
+      security: '/security',
+      top: '/',
+    };
+    const path = routeMap[id] || `/#${id}`;
+    window.history.pushState({}, '', path);
+  }
 }
 
 function Reveal({ children, className = '', delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
@@ -414,16 +425,282 @@ function DownloadSection() {
 }
 
 function Footer() {
-  return <footer className="footer"><div className="shell footer__inner"><a className="wordmark" href="/#top"><BrandMark /><span>altercode</span></a><span className="footer__meta">Made by Ramzes</span><div className="footer__links"><a href="/privacy-policy">Privacy Policy</a><a href="/terms">Terms &amp; Conditions</a></div><span className="footer__legal">© 2026 AlterCode</span></div></footer>;
+  return (
+    <footer className="footer">
+      <div className="shell footer__inner">
+        <a className="wordmark" href="/#top"><BrandMark /><span>altercode</span></a>
+        <span className="footer__meta">Made by Ramzes</span>
+        <div className="footer__links">
+          <a href="/privacy-policy">Privacy Policy</a>
+          <a href="/terms">Terms &amp; Conditions</a>
+          <a href="/sitemap">Sitemap</a>
+        </div>
+        <span className="footer__legal">© 2026 AlterCode</span>
+      </div>
+    </footer>
+  );
 }
 
 function PolicyPage({ type }: { type: 'privacy' | 'terms' }) {
-  const isPrivacy = type === 'privacy';
-  return <div className="policy-page"><header className="policy-page__nav"><a className="wordmark" href="/#top"><BrandMark /><span>altercode</span></a><a className="text-link" href="/#top"><ArrowLeft size={17} /> Back to home</a></header><main className="policy-page__content"><div className="kicker"><span>{isPrivacy ? '01' : '02'}</span> AlterCode legal</div><h1>{isPrivacy ? 'Privacy Policy' : 'Terms & Conditions'}</h1><p className="policy-page__updated">Last updated: September 27, 2026</p>{isPrivacy ? <><h2>What we collect</h2><p>AlterCode is designed to keep your development workflow private. We collect only the information needed to provide the app, improve reliability, and respond to support requests.</p><h2>Code and local history</h2><p>Your code history is stored locally on your device and protected with Android Keystore-backed encryption. We do not sell your code or maintain a cloud archive of your local history.</p><h2>AI requests</h2><p>When you ask AlterCode for an explanation, translation, or refactor, the request is sent to the selected AI service through our edge routing layer so we can return an answer. Requests are protected in transit and are not used to identify you.</p><h2>Contact</h2><p>Questions about privacy can be directed to the AlterCode team through the project repository.</p></> : <><h2>Using AlterCode</h2><p>AlterCode is provided as a development aid. You are responsible for reviewing generated output, testing changes, and confirming that code is safe and appropriate for your project.</p><h2>Your responsibilities</h2><p>Do not use AlterCode to upload code or content you are not authorized to share. You agree not to abuse, reverse engineer, or disrupt the service or its supporting infrastructure.</p><h2>Availability and changes</h2><p>Features may change as AlterCode evolves. We may update these terms when the service, app, or applicable requirements change. Continued use after an update means you accept the revised terms.</p><h2>Contact</h2><p>For questions about these terms, contact the AlterCode team through the project repository.</p></>}</main><Footer /></div>;
+  const [activeTab, setActiveTab] = useState<'privacy' | 'terms'>(type);
+  const isPrivacy = activeTab === 'privacy';
+
+  const setTab = (nextTab: 'privacy' | 'terms') => {
+    setActiveTab(nextTab);
+    window.history.pushState({}, '', nextTab === 'privacy' ? '/privacy-policy' : '/terms');
+  };
+
+  return (
+    <div className="policy-page">
+      <header className="policy-page__nav">
+        <a className="wordmark" href="/#top"><BrandMark /><span>altercode</span></a>
+        <a className="text-link" href="/#top"><ArrowLeft size={17} /> Back to home</a>
+      </header>
+      <main className="policy-page__content">
+        <div className="policy-page__tabs">
+          <button
+            type="button"
+            className={`policy-page__tab ${isPrivacy ? 'policy-page__tab--active' : ''}`}
+            onClick={() => setTab('privacy')}
+          >
+            Privacy Policy
+          </button>
+          <button
+            type="button"
+            className={`policy-page__tab ${!isPrivacy ? 'policy-page__tab--active' : ''}`}
+            onClick={() => setTab('terms')}
+          >
+            Terms &amp; Conditions
+          </button>
+        </div>
+
+        <h1>{isPrivacy ? 'Privacy Policy' : 'Terms & Conditions'}</h1>
+        <p className="policy-page__updated">Last updated: August 14, 2026</p>
+
+        {isPrivacy ? (
+          <>
+            <p>
+              This Privacy Policy applies to the <strong>AlterCode</strong> mobile application operated by <strong>[AlterCode.DevTeam]</strong> (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;).
+            </p>
+
+            <h2>1. Information We Collect</h2>
+            <ul>
+              <li>
+                <strong>Local Device Storage:</strong> Code snippets and history are saved directly on your mobile device using on-device SQLite. We do not store or transmit your saved snippets to external databases owned by us.
+              </li>
+              <li>
+                <strong>Code Processing:</strong> Code pasted for conversion is processed in real-time using secure proxy connections to AI inference models and is not permanently retained.
+              </li>
+              <li>
+                <strong>Ad Analytics (Google AdMob):</strong> We use Google AdMob to serve advertisements. AdMob may collect device identifiers (Advertising ID / IDFA), IP address, and app interaction data for ad serving and fraud prevention.
+              </li>
+            </ul>
+
+            <h2>2. How We Use Information</h2>
+            <p>
+              We use collected data solely to execute AI code transformations and display rewarded advertisements to keep the app free to use.
+            </p>
+
+            <h2>3. Third-Party Services</h2>
+            <p>
+              Our app integrates trusted third-party providers:
+            </p>
+            <ul>
+              <li>
+                <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
+                  Google AdMob &amp; Services
+                </a>
+              </li>
+            </ul>
+
+            <h2>4. Security</h2>
+            <p>
+              All network data in transit between your device and our proxy backend is encrypted using standard TLS/HTTPS encryption protocols.
+            </p>
+
+            <h2>5. Contact Us</h2>
+            <p>
+              If you have any questions regarding this policy, please contact us at: <a href="mailto:altercodeapp@cookscopeai.com">altercodeapp@cookscopeai.com</a>
+            </p>
+          </>
+        ) : (
+          <>
+            <p>
+              By downloading or using <strong>AlterCode</strong>, these terms will automatically apply to you.
+            </p>
+
+            <h2>1. AI Output &amp; Accuracy Disclaimer</h2>
+            <p>
+              Code transformations and explanations are generated automatically by artificial intelligence models. While we aim for high accuracy, AI output may contain bugs or security oversights. You are responsible for reviewing and testing all code before using it in production systems.
+            </p>
+
+            <h2>2. Rewarded Advertisements</h2>
+            <p>
+              Free usage of AI features may require completing rewarded video advertisements. Bypassing or attempting to automate ad interactions is strictly prohibited.
+            </p>
+
+            <h2>3. Intellectual Property</h2>
+            <p>
+              You retain full ownership of any code snippets you submit and the resulting converted code generated for you.
+            </p>
+
+            <h2>4. Limitation of Liability</h2>
+            <p>
+              We are not liable for any indirect, incidental, or consequential damages resulting from errors in converted code or temporary app service downtime.
+            </p>
+
+            <h2>5. Contact</h2>
+            <p>
+              For inquiries regarding these Terms, contact us at: <a href="mailto:altercodeapp@cookscopeai.com">altercodeapp@cookscopeai.com</a>
+            </p>
+          </>
+        )}
+      </main>
+      <Footer />
+    </div>
+  );
+}
+
+function SitemapPage() {
+  return (
+    <div className="policy-page">
+      <header className="policy-page__nav">
+        <a className="wordmark" href="/#top"><BrandMark /><span>altercode</span></a>
+        <a className="text-link" href="/#top"><ArrowLeft size={17} /> Back to home</a>
+      </header>
+      <main className="policy-page__content">
+        <h1>Sitemap</h1>
+        <p className="policy-page__updated">Complete directory of pages, features, and resources</p>
+
+        <p>
+          Explore all sections and public pages of AlterCode, the AI-powered developer tool and code assistant for devices.
+        </p>
+
+        <div className="sitemap-action-bar">
+          <a className="text-link" href="/sitemap.xml" target="_blank" rel="noopener noreferrer">
+            View XML Sitemap <ArrowUpRight size={15} />
+          </a>
+          <a className="text-link" href="/robots.txt" target="_blank" rel="noopener noreferrer">
+            View robots.txt <ArrowUpRight size={15} />
+          </a>
+        </div>
+
+        <div className="sitemap-grid">
+          <div className="sitemap-card">
+            <h3><span>01</span> Overview &amp; Demo</h3>
+            <ul>
+              <li>
+                <a href="/">Home (Top) <span className="badge">1.0</span></a>
+              </li>
+              <li>
+                <a href="/demo">Product Demo &amp; Video <span className="badge">0.9</span></a>
+              </li>
+            </ul>
+          </div>
+
+          <div className="sitemap-card">
+            <h3><span>02</span> Platform Features</h3>
+            <ul>
+              <li>
+                <a href="/capabilities">Capabilities &amp; 12+ Languages <span className="badge">0.8</span></a>
+              </li>
+              <li>
+                <a href="/architecture">Under the Hood Architecture <span className="badge">0.8</span></a>
+              </li>
+              <li>
+                <a href="/security">On-Device Security &amp; Vault <span className="badge">0.8</span></a>
+              </li>
+            </ul>
+          </div>
+
+          <div className="sitemap-card">
+            <h3><span>03</span> Legal &amp; Compliance</h3>
+            <ul>
+              <li>
+                <a href="/privacy-policy">Privacy Policy <span className="badge">0.6</span></a>
+              </li>
+              <li>
+                <a href="/terms">Terms &amp; Conditions <span className="badge">0.6</span></a>
+              </li>
+            </ul>
+          </div>
+
+          <div className="sitemap-card">
+            <h3><span>04</span> External Channels</h3>
+            <ul>
+              <li>
+                <a href={PLAY_STORE_URL} target="_blank" rel="noreferrer">
+                  Google Play Store <ArrowUpRight size={13} />
+                </a>
+              </li>
+              <li>
+                <a href={GITHUB_URL} target="_blank" rel="noreferrer">
+                  GitHub Repository <ArrowUpRight size={13} />
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </main>
+      <Footer />
+    </div>
+  );
 }
 
 export default function App() {
-  if (window.location.pathname === '/privacy-policy') return <PolicyPage type="privacy" />;
-  if (window.location.pathname === '/terms') return <PolicyPage type="terms" />;
-  return <div className="site-shell"><Navbar /><main><Hero /><SignalStrip /><Playground /><Features /><Architecture /><Security /><DownloadSection /></main><Footer /></div>;
+  const pathname = window.location.pathname;
+
+  useEffect(() => {
+    const rawPath = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
+    const routeToId: Record<string, string> = {
+      demo: 'playground',
+      playground: 'playground',
+      capabilities: 'features',
+      features: 'features',
+      architecture: 'architecture',
+      security: 'security',
+    };
+
+    const titles: Record<string, string> = {
+      demo: 'AlterCode – Interactive Product Demo & Mobile Experience',
+      playground: 'AlterCode – Interactive Product Demo & Mobile Experience',
+      capabilities: 'AlterCode – Capabilities & 12+ Language Conversion',
+      features: 'AlterCode – Capabilities & 12+ Language Conversion',
+      architecture: 'AlterCode – High-Speed Edge Architecture & Dual Engine',
+      security: 'AlterCode – On-Device AES-256 Security & Encrypted Vault',
+      sitemap: 'AlterCode – Sitemap & Directory',
+    };
+
+    const targetId = routeToId[rawPath];
+    if (targetId) {
+      if (titles[rawPath]) {
+        document.title = titles[rawPath];
+      }
+      const timer = setTimeout(() => {
+        scrollToId(targetId, false);
+      }, 150);
+      return () => clearTimeout(timer);
+    } else if (titles[rawPath]) {
+      document.title = titles[rawPath];
+    }
+  }, []);
+
+  if (pathname === '/privacy-policy') return <PolicyPage type="privacy" />;
+  if (pathname === '/terms') return <PolicyPage type="terms" />;
+  if (pathname === '/sitemap') return <SitemapPage />;
+  return (
+    <div className="site-shell">
+      <Navbar />
+      <main>
+        <Hero />
+        <SignalStrip />
+        <Playground />
+        <Features />
+        <Architecture />
+        <Security />
+        <DownloadSection />
+      </main>
+      <Footer />
+    </div>
+  );
 }

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+  <!-- Homepage -->
+  <url>
+    <loc>https://ais-pre-semccsvgpxlnlcqu7srfln-142920690353.asia-southeast1.run.app/</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Product Demo & Video -->
+  <url>
+    <loc>https://ais-pre-semccsvgpxlnlcqu7srfln-142920690353.asia-southeast1.run.app/demo</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/XgNR9ligu6c/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>AlterCode Mobile AI Code Converter Demo</video:title>
+      <video:description>Watch how AlterCode refactors, translates, and debugs code at thumb-speed directly on mobile devices with dual-engine AI routing.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/XgNR9ligu6c</video:player_loc>
+    </video:video>
+  </url>
+
+  <!-- Capabilities (Features & Multi-language Support) -->
+  <url>
+    <loc>https://ais-pre-semccsvgpxlnlcqu7srfln-142920690353.asia-southeast1.run.app/capabilities</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Under the Hood Architecture -->
+  <url>
+    <loc>https://ais-pre-semccsvgpxlnlcqu7srfln-142920690353.asia-southeast1.run.app/architecture</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Security & Encrypted Local Vault -->
+  <url>
+    <loc>https://ais-pre-semccsvgpxlnlcqu7srfln-142920690353.asia-southeast1.run.app/security</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Official Privacy Policy -->
+  <url>
+    <loc>https://ais-pre-semccsvgpxlnlcqu7srfln-142920690353.asia-southeast1.run.app/privacy-policy</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Official Terms & Conditions -->
+  <url>
+    <loc>https://ais-pre-semccsvgpxlnlcqu7srfln-142920690353.asia-southeast1.run.app/terms</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- HTML Sitemap Directory -->
+  <url>
+    <loc>https://ais-pre-semccsvgpxlnlcqu7srfln-142920690353.asia-southeast1.run.app/sitemap</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+</urlset>
