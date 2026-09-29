@@ -5,7 +5,6 @@ import {
   ArrowRight,
   ArrowUpRight,
   Check,
-  ChevronDown,
   Code2,
   Cpu,
   Download,
@@ -19,11 +18,11 @@ import {
   X,
   Zap,
 } from 'lucide-react';
-import mobileHeroImage from './assets/images/altercode_mobile_hero_1790513583351.jpg';
 import securityImage from './assets/images/altercode_security_vault_1790513598077.jpg';
 import logoImage from './assets/images/altercodelogo.png';
 import googlePlayImage from './assets/images/googleplay-badge.png';
 import appStoreImage from './assets/images/appstore-comingsoon.png';
+import { FlatText } from './components/FlatText';
 
 const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.ai.altercode';
 const GITHUB_URL = 'https://github.com/ramzesktaplah/Altercode';
@@ -147,8 +146,17 @@ function Hero() {
 
         <div className="hero__grid">
           <div className="hero__copy">
-            <Reveal delay={80}>
-              <h1>Code that <em>moves</em> at your speed.</h1>
+            <Reveal delay={80} className="w-full">
+              <h1 className="sr-only">Code that moves at your speed.</h1>
+              <FlatText
+                text={"Code that moves at your speed."}
+                font={{ fontSize: 64, fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 0.95, textAlign: "center" }}
+                ink="#f4f6f1"
+                reach={5}
+                lift={4}
+                drift={3}
+                style={{ maxWidth: 860, margin: '0 auto' }}
+              />
             </Reveal>
             <Reveal delay={150}>
               <p className="hero__lede">
@@ -160,29 +168,7 @@ function Hero() {
               <button className="text-link" onClick={() => scrollToId('playground')}>See it in action <ArrowDownRight size={17} /></button>
             </Reveal>
           </div>
-
-          <Reveal delay={170} className="hero__visual-wrap">
-            <div className="hero__visual">
-              <div className="visual-grid" />
-              <div className="visual-label visual-label--top"><span className="status-dot status-dot--lime" /> Local-first runtime</div>
-              <div className="visual-label visual-label--side">01 <span /> 04</div>
-              <div className="hero__image-frame">
-                <img src={mobileHeroImage} alt="AlterCode running on an Android phone" />
-                <div className="hero__image-shade" />
-                <div className="hero__image-caption">
-                  <span>ALTERCODE / ANDROID</span>
-                  <strong>Build from anywhere.</strong>
-                </div>
-              </div>
-              <div className="floating-stat floating-stat--top"><Zap size={14} /> <strong>140ms</strong><span>average response</span></div>
-              <div className="floating-stat floating-stat--bottom"><LockKeyhole size={14} /> <strong>Encrypted</strong><span>by default</span></div>
-            </div>
-          </Reveal>
         </div>
-
-        <button className="scroll-cue" onClick={() => scrollToId('signal')} aria-label="Scroll to discover more">
-          <span>Scroll to explore</span><ArrowDownRight size={17} />
-        </button>
       </div>
     </section>
   );
@@ -252,11 +238,21 @@ function Playground() {
       <div className="shell">
         <div className="section-intro section-intro--split">
           <Reveal>
-            <div className="kicker"><span>01</span> The pocket-sized advantage</div>
-            <h2>Your best ideas don’t wait for a desk.</h2>
+            <h2 className="sr-only">Your best ideas don’t wait for a desk.</h2>
+            <FlatText
+              text={"Your best ideas don’t wait for a desk."}
+              font={{ fontSize: 48, fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 0.96, textAlign: "left" }}
+              ink="#eaf0e9"
+              reach={5}
+              lift={4}
+              drift={3}
+              style={{ maxWidth: 560 }}
+            />
           </Reveal>
           <Reveal delay={100}>
-            <p>Paste a snippet. Ask a sharper question. Keep moving. AlterCode makes serious development work feel natural on a phone, with an interface designed for thumb-speed thinking.</p>
+            <p>
+              Paste a snippet. Ask a sharper question. Keep moving. AlterCode makes serious development work feel natural on a phone, with an interface designed for thumb-speed thinking.
+            </p>
             <button className="text-link text-link--light" onClick={() => scrollToId('features')}>Explore capabilities <ArrowRight size={17} /></button>
           </Reveal>
         </div>
@@ -264,7 +260,7 @@ function Playground() {
         <Reveal className="playground__window" delay={100}>
           <div className="playground__chrome">
             <div className="window-dots"><i /><i /><i /></div>
-            <div className="window-title"><Play size={14} fill="currentColor" /> altercode / product tour</div>
+            <div className="window-title"><Play size={14} fill="currentColor" /> altercode / product </div>
             <span className="window-live"><span className="status-dot status-dot--lime" /> watch now</span>
           </div>
           <ProductVideo />
@@ -286,11 +282,21 @@ function Features() {
       <div className="shell">
         <div className="section-intro">
           <Reveal>
-            <div className="kicker"><span>02</span> What makes it different</div>
-            <h2>Small screen.<br /><em>Serious leverage.</em></h2>
+            <h2 className="sr-only">Small screen. Serious leverage.</h2>
+            <FlatText
+              text={"Small screen.\nSerious leverage."}
+              font={{ fontSize: 54, fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 0.95, textAlign: "left" }}
+              ink="#0c1013"
+              reach={5}
+              lift={4}
+              drift={3}
+              style={{ maxWidth: 580 }}
+            />
           </Reveal>
           <Reveal delay={100} className="section-intro__aside">
-            <p>There is no “mobile version” of the experience. AlterCode is built around the way developers actually think: in fragments, in bursts, and in the five minutes between everything else.</p>
+            <p>
+              There is no “mobile version” of the experience. AlterCode is built around the way developers actually think: in fragments, in bursts, and in the five minutes between everything else.
+            </p>
           </Reveal>
         </div>
 
@@ -314,9 +320,19 @@ function Architecture() {
       <div className="shell">
         <div className="architecture__grid">
           <Reveal>
-            <div className="kicker kicker--light"><span>03</span> Under the hood</div>
-            <h2>One clean path<br />from <em>thought</em><br />to output.</h2>
-            <p className="architecture__lede">Every request travels through a focused pipeline: your device, the edge, the right model, and back again. No clutter in between.</p>
+            <h2 className="sr-only">One clean path from thought to output.</h2>
+            <FlatText
+              text={"One clean path\nfrom thought\nto output."}
+              font={{ fontSize: 52, fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 0.95, textAlign: "left" }}
+              ink="#f2f6ef"
+              reach={5}
+              lift={4}
+              drift={3}
+              style={{ maxWidth: 440 }}
+            />
+            <p className="architecture__lede">
+              Every request travels through a focused pipeline: your device, the edge, the right model, and back again. No clutter in between.
+            </p>
             <a className="text-link text-link--light" href={GITHUB_URL} target="_blank" rel="noreferrer">Read the source <Github size={17} /></a>
           </Reveal>
           <Reveal className="architecture__diagram" delay={120}>
@@ -347,9 +363,19 @@ function Security() {
         <div className="security__card">
           <div className="security__image"><img src={securityImage} alt="Secure AlterCode vault interface" /><div className="security__image-overlay" /></div>
           <Reveal className="security__copy" delay={120}>
-            <div className="kicker"><span>04</span> A quieter kind of safe</div>
-            <h2>Privacy is a product feature.</h2>
-            <p>AlterCode treats your code like it belongs to you. Your history is encrypted before it touches local storage, and the cloud only sees the request needed to answer the question in front of you.</p>
+            <h2 className="sr-only">Privacy is a product feature.</h2>
+            <FlatText
+              text={"Privacy is a product feature."}
+              font={{ fontSize: 44, fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 0.96, textAlign: "left" }}
+              ink="#0c1013"
+              reach={5}
+              lift={4}
+              drift={3}
+              style={{ maxWidth: 400 }}
+            />
+            <p>
+              AlterCode treats your code like it belongs to you. Your history is encrypted before it touches local storage, and the cloud only sees the request needed to answer the question in front of you.
+            </p>
             <div className="security__list"><span><Check size={15} /> AES-256 encrypted SQLite</span><span><Check size={15} /> Android Keystore backed keys</span><span><Check size={15} /> No cloud history sync</span></div>
             <span className="security__note"><LockKeyhole size={14} /> Protected on-device by default</span>
           </Reveal>
@@ -365,7 +391,21 @@ function DownloadSection() {
       <div className="shell">
         <Reveal className="download__panel">
           <div className="download__glow" />
-          <div className="download__copy"><div className="kicker kicker--light"><span>05</span> Ready when you are</div><h2>Make the next<br /><em>good thing.</em></h2><p>Keep your best thinking close. AlterCode is free to start on Android.</p></div>
+          <div className="download__copy">
+            <h2 className="sr-only">Make the next good thing.</h2>
+            <FlatText
+              text={"Make the next\ngood thing."}
+              font={{ fontSize: 62, fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 0.92, textAlign: "center" }}
+              ink="#f5f7f1"
+              reach={5}
+              lift={4}
+              drift={3}
+              style={{ maxWidth: 620, margin: '0 auto' }}
+            />
+            <p>
+              Keep your best thinking close. AlterCode is free to start on Android.
+            </p>
+          </div>
           <div className="download__action"><StoreBadges /><span>Mobile devices <i /> Free to start</span></div>
         </Reveal>
       </div>
@@ -373,25 +413,8 @@ function DownloadSection() {
   );
 }
 
-function Faq() {
-  const questions = [
-    ['Is AlterCode only for Android?', 'Yes. AlterCode is intentionally Android-native so the experience can stay fast, focused, and close to the hardware.'],
-    ['What models power the assistant?', 'AlterCode dynamically routes requests between Groq and Gemini depending on the job. Fast debugging gets the fast path; deep conversions get the model with more room to think.'],
-    ['Does my code get stored in the cloud?', 'No cloud history is kept. Your local history is encrypted with SQLCipher and protected by Android Keystore-backed keys.'],
-    ['Which languages can I translate?', 'AlterCode supports Kotlin, Python, TypeScript, Rust, Go, Swift, C++, Java, C#, PHP, and more.'],
-  ];
-  return (
-    <section id="faq" className="faq section-pad">
-      <div className="shell faq__grid">
-        <Reveal><div className="kicker"><span>06</span> Good questions</div><h2>Before you<br /><em>get building.</em></h2><p>Still curious? The app is open-source, so you can always look closer.</p><a className="text-link" href={GITHUB_URL} target="_blank" rel="noreferrer">Visit GitHub <ArrowUpRight size={17} /></a></Reveal>
-        <Reveal delay={100} className="faq__list">{questions.map(([question, answer]) => <details key={question}><summary>{question}<ChevronDown size={18} /></summary><p>{answer}</p></details>)}</Reveal>
-      </div>
-    </section>
-  );
-}
-
 function Footer() {
-  return <footer className="footer"><div className="shell footer__inner"><a className="wordmark" href="/#top"><BrandMark /><span>altercode</span></a><span className="footer__meta">Native AI tooling for Android developers.</span><div className="footer__links"><a href="/privacy-policy">Privacy Policy</a><a href="/terms">Terms &amp; Conditions</a></div><span className="footer__legal">© 2025 AlterCode</span></div></footer>;
+  return <footer className="footer"><div className="shell footer__inner"><a className="wordmark" href="/#top"><BrandMark /><span>altercode</span></a><span className="footer__meta">Made by Ramzes</span><div className="footer__links"><a href="/privacy-policy">Privacy Policy</a><a href="/terms">Terms &amp; Conditions</a></div><span className="footer__legal">© 2026 AlterCode</span></div></footer>;
 }
 
 function PolicyPage({ type }: { type: 'privacy' | 'terms' }) {
@@ -402,5 +425,5 @@ function PolicyPage({ type }: { type: 'privacy' | 'terms' }) {
 export default function App() {
   if (window.location.pathname === '/privacy-policy') return <PolicyPage type="privacy" />;
   if (window.location.pathname === '/terms') return <PolicyPage type="terms" />;
-  return <div className="site-shell"><Navbar /><main><Hero /><SignalStrip /><Playground /><Features /><Architecture /><Security /><DownloadSection /><Faq /></main><Footer /></div>;
+  return <div className="site-shell"><Navbar /><main><Hero /><SignalStrip /><Playground /><Features /><Architecture /><Security /><DownloadSection /></main><Footer /></div>;
 }

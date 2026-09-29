@@ -1,6 +1,6 @@
 {
-  "name": "AlterCode - AI Developer Tool & Code Assistant for Android",
-  "description": "The AI-powered developer tool and code assistant for Android. Convert, refactor, fix, and explain code on mobile with SQLCipher encryption and dual-engine AI routing.",
+  "name": "AlterCode - Code Convert Tool",
+  "description": "The AI-powered developer tool and code assistant for Devices. Convert, refactor, fix, and explain code on mobile with SQLCipher encryption and dual-engine AI routing.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
