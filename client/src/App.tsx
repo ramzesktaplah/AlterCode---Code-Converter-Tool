@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react';
 import {
-  ArrowDownRight,
   ArrowLeft,
   ArrowRight,
   ArrowUpRight,
@@ -18,7 +17,6 @@ import {
   X,
   Zap,
 } from 'lucide-react';
-import securityImage from './assets/images/altercode_security_vault_1790513598077.jpg';
 import logoImage from './assets/images/altercodelogo.png';
 import googlePlayImage from './assets/images/googleplay-badge.png';
 import appStoreImage from './assets/images/appstore-comingsoon.png';
@@ -176,23 +174,9 @@ function Hero() {
             </Reveal>
             <Reveal delay={220} className="hero__actions">
               <StoreBadges />
-              <button className="text-link" onClick={() => scrollToId('playground')}>See it in action <ArrowDownRight size={17} /></button>
             </Reveal>
           </div>
         </div>
-      </div>
-    </section>
-  );
-}
-
-function SignalStrip() {
-  const items = ['GROQ + GEMINI', 'SQLCIPHER LOCAL VAULT', 'ZERO-CORS EDGE', '12+ LANGUAGES', 'JETPACK COMPOSE', 'ANDROID NATIVE'];
-  return (
-    <section id="signal" className="signal-strip" aria-label="AlterCode capabilities">
-      <div className="signal-strip__track">
-        {[...items, ...items].map((item, index) => (
-          <span key={`${item}-${index}`}><i /> {item}</span>
-        ))}
       </div>
     </section>
   );
@@ -245,7 +229,7 @@ function ProductVideo() {
 
 function Playground() {
   return (
-    <section id="playground" className="playground section-pad section-dark">
+    <section id="playground" className="playground section-pad">
       <div className="shell">
         <div className="section-intro section-intro--split">
           <Reveal>
@@ -253,7 +237,7 @@ function Playground() {
             <FlatText
               text={"Your best ideas don’t wait for a desk."}
               font={{ fontSize: 48, fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 0.96, textAlign: "left" }}
-              ink="#eaf0e9"
+              ink="#f4f6fa"
               reach={5}
               lift={4}
               drift={3}
@@ -297,7 +281,7 @@ function Features() {
             <FlatText
               text={"Small screen.\nSerious leverage."}
               font={{ fontSize: 54, fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 0.95, textAlign: "left" }}
-              ink="#0c1013"
+              ink="#f4f6fa"
               reach={5}
               lift={4}
               drift={3}
@@ -327,7 +311,7 @@ function Features() {
 
 function Architecture() {
   return (
-    <section id="architecture" className="architecture section-pad section-ink">
+    <section id="architecture" className="architecture section-pad">
       <div className="shell">
         <div className="architecture__grid">
           <Reveal>
@@ -335,7 +319,7 @@ function Architecture() {
             <FlatText
               text={"One clean path\nfrom thought\nto output."}
               font={{ fontSize: 52, fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 0.95, textAlign: "left" }}
-              ink="#f2f6ef"
+              ink="#f4f6fa"
               reach={5}
               lift={4}
               drift={3}
@@ -372,17 +356,16 @@ function Security() {
     <section id="security" className="security section-pad">
       <div className="shell">
         <div className="security__card">
-          <div className="security__image"><img src={securityImage} alt="Secure AlterCode vault interface" /><div className="security__image-overlay" /></div>
           <Reveal className="security__copy" delay={120}>
             <h2 className="sr-only">Privacy is a product feature.</h2>
             <FlatText
               text={"Privacy is a product feature."}
               font={{ fontSize: 44, fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 0.96, textAlign: "left" }}
-              ink="#0c1013"
+              ink="#f4f6fa"
               reach={5}
               lift={4}
               drift={3}
-              style={{ maxWidth: 400 }}
+              style={{ maxWidth: 560 }}
             />
             <p>
               AlterCode treats your code like it belongs to you. Your history is encrypted before it touches local storage, and the cloud only sees the request needed to answer the question in front of you.
@@ -693,7 +676,6 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
-        <SignalStrip />
         <Playground />
         <Features />
         <Architecture />
